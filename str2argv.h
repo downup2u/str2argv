@@ -17,12 +17,15 @@
 #ifndef STR2ARGV_H
 #define STR2ARGV_H
 
-#include <err.h>
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* hard limits on the size of an argv and each entry/token w/in an argv */
 #define ARGV_MAX_ENTRIES    255
@@ -37,7 +40,7 @@
  * str2argv.c contains a small driver program that can be used for testing.
  * The Makefile contains the necessary build target "test_str2argv"
  */
-int str2argv(char *str, int *argc, char ***argv, const char **errmsg);
+int str2argv(const char *str, int *argc, char ***argv, const char **errmsg);
 
 /*
  * After the above function is used to build an argc/argv set of parameters,
@@ -51,5 +54,9 @@ void argv_free(int *argc, char ***argv);
  * space between each.  Tokens with multiple words are quoted.
  */
 char *argv2str(int argc, char *argv[]);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
